@@ -25,10 +25,7 @@
       <td th:text="${job.description}"></td>
       <td th:text="${job.cost}">$</td>
       <td>
-        <form action="/jobs/book" method="post">
-          <input type="hidden" name="jobId" th:value="${job.id}">
-          <button type="submit" class="btn btn-primary">Записаться</button>
-        </form>
+        <button type="submit" class="btn btn-primary">Записаться</button>
       </td>
     </tr>
     </tbody>
