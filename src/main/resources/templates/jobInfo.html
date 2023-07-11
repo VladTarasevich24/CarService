@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:if="${job}">
+    <p>ID: <span th:text="${job.id}"></span></p>
+    <p>Name: <span th:text="${job.name}"></span></p>
+    <p>Description: <span th:text="${job.description}"></span></p>
+    <p>Cost: <span th:text="${job.cost}"></span></p>
+</div>
+<div th:unless="${job}">
+    <p>Job not found.</p>
+</div>
+</body>
+</html>

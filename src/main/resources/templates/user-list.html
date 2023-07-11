@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UserList</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<h1>User List</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Telephone</th>
+        <th>Username</th>
+        <th>Car Brand</th>
+        <th>Car Model</th>
+        <th>Car Engine Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <td th:text="${user.id}"></td>
+        <td th:text="${user.telephone}"></td>
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.car.brand}"></td>
+        <td th:text="${user.car.model}"></td>
+        <td th:text="${user.car.engineType}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

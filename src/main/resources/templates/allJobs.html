@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs List</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <h1>Jobs List</h1>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Cost</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="job : ${jobsList}">
+      <td th:text="${job.id}"></td>
+      <td th:text="${job.name}"></td>
+      <td th:text="${job.description}"></td>
+      <td th:text="${job.cost}">$</td>
+      <td>
+        <form action="/jobs/book" method="post">
+          <input type="hidden" name="jobId" th:value="${job.id}">
+          <button type="submit" class="btn btn-primary">Записаться</button>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
