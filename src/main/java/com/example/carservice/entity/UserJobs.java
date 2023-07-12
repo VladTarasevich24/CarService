@@ -6,20 +6,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Jobs {
+public class UserJobs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String name;
-    private String description;
-    private double cost;
-    @OneToOne
+    private Long id;
+
+    @ManyToOne
     private User user;
+
+    @ManyToOne
+    private Jobs jobs;
+
+
 }

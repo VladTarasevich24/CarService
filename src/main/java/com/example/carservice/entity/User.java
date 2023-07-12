@@ -29,12 +29,14 @@ public class User implements UserDetails {
     private String password;
     @OneToOne(cascade = CascadeType.ALL)
     private Car car;
-    @OneToOne(cascade = CascadeType.ALL)
-    private Jobs jobs;
+
+    @OneToOne(mappedBy = "user")
+    private Jobs job;
 
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
+    @OrderColumn
     private Set<Role> roles = new HashSet<>();
 
     @Override
@@ -61,6 +63,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+    public void setJob(Jobs job) {
+        this.job = job;
+        job.setUser(this);
     }
 
 

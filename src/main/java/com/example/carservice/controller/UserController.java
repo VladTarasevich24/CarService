@@ -4,7 +4,9 @@ package com.example.carservice.controller;
 import com.example.carservice.AuthenticationFacade;
 import com.example.carservice.dto.UserRegistrationDto;
 import com.example.carservice.entity.Car;
+import com.example.carservice.entity.Jobs;
 import com.example.carservice.entity.User;
+import com.example.carservice.service.JobsService;
 import com.example.carservice.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Controller
@@ -28,6 +29,8 @@ public class UserController {
     private AuthenticationFacade authenticationFacade;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private JobsService jobsService;
 
 
     @GetMapping("/login")
@@ -57,15 +60,18 @@ public class UserController {
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             model.addAttribute("user", user);
+            List<Jobs> userJobs = jobsService.getAllJobsByUser(user);
+            model.addAttribute("userJobs", userJobs);
             return "info";
         }
         return "redirect:/";
     }
-    @GetMapping("/all")
-    public String getAllUsers(Model model) {
-        List<User> users = userService.getAllUsers();
-        model.addAttribute("users", users);
-        return "user-list";
-    }
+
+@GetMapping("/all")
+public String getAllUsers(Model model) {
+    List<User> users = userService.getAllUsers();
+    model.addAttribute("users", users);
+    return "user-list";
+}
 
 }
