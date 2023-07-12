@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Автосервис</title>
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+
 </head>
 <body>
-<a href="/user/reg">Registration</a>
-<a href="/user/login">Login</a>
-<a href="/user/info">Info</a>
-<a href="/user/all">All Users</a>
-<a href="/jobs/allJobs">All Jobs</a>
-<a href="/jobs/create">Create Jobs</a>
-<a href="/jobs/1">Jobs Info</a>
-<form method="post" th:action="@{/logout}">
-  <button>Logout</button>
-</form>
+<div th:replace="navbar :: navbar"></div>
 </body>
 </html>
+
+
+
+
+
+
+

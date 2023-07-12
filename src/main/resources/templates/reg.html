@@ -2,17 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Автосервис - Регистрация</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            height: 40px;
+            font-size: 16px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-<form method="post" th:action="@{/user/reg}">
-  <input type="text" name="telephone" placeholder="Telephone">
-  <input type="text" name="username" placeholder="Username">
-  <input type="text" name="password" placeholder="Password">
-  <input type="text" name="brand" placeholder="brand">
-  <input type="text" name="model" placeholder="model">
-  <input type="text" name="engineType" placeholder="engineType">
-  <button>Submit</button>
-</form>
+<div class="container" >
+    <h2>Регистрация</h2>
+    <form method="post" th:action="@{/user/reg}">
+        <div class="form-group">
+            <label for="username">Имя пользователя</label>
+            <input type="text" id="username" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="telephone">Телефон</label>
+            <input type="text" id="telephone" name="telephone" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="brand">Марка автомобиля</label>
+            <input type="text" id="brand" name="brand" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="model">Модель автомобиля</label>
+            <input type="text" id="model" name="model" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="engineType">Тип двигателя автомобиля</label>
+            <input type="text" id="engineType" name="engineType" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<div th:replace="navbar :: navbar"></div>
 <form method="post" th:action="@{/jobs/create}">
   <input type="text" name="name" placeholder="Name">
   <input type="text" name="description" placeholder="Description">
