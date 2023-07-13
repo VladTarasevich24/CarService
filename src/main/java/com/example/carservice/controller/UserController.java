@@ -6,15 +6,14 @@ import com.example.carservice.dto.UserRegistrationDto;
 import com.example.carservice.entity.Car;
 import com.example.carservice.entity.Jobs;
 import com.example.carservice.entity.User;
+import com.example.carservice.repository.UserRepository;
 import com.example.carservice.service.JobsService;
 import com.example.carservice.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -31,6 +30,8 @@ public class UserController {
     private ModelMapper modelMapper;
     @Autowired
     private JobsService jobsService;
+    @Autowired
+    private UserRepository userRepository;
 
 
     @GetMapping("/login")
@@ -73,5 +74,10 @@ public String getAllUsers(Model model) {
     model.addAttribute("users", users);
     return "user-list";
 }
+    @PostMapping("/status/{id}")
+    public String updateStatus(@PathVariable("id") Long id, @RequestParam("status") String status) {
+        userRepository.updateUserStatus(id, status);
+        return "redirect:/user/all";
+    }
 
 }

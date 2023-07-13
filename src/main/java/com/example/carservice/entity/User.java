@@ -27,6 +27,7 @@ public class User implements UserDetails {
     private String telephone;
     private String username;
     private String password;
+    private String status = "Принят";
     @OneToOne(cascade = CascadeType.ALL)
     private Car car;
 

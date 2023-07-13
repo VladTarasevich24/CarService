@@ -3,7 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>UserList</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        .custom-select-color{
+            border: none;
+            border-radius: 0;
+            background-color: transparent;
+            color: #000;
+        }
+        .text-primary {
+            color: blue;
+        }
+        .text-warning {
+            color: orange;
+        }
+        .text-success {
+            color: green;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="navbar :: navbar"></div>
@@ -18,6 +35,7 @@
         <th>Car Model</th>
         <th>Car Engine Type</th>
         <th>Jobs</th>
+        <th>Status</th>
     </tr>
     </thead>
     <tbody>
@@ -33,6 +51,18 @@
                 <li th:each="job : ${user.job}" th:text="${job.name}"></li>
             </ul>
             <p th:unless="${user.job}">No jobs</p>
+        </td>
+        <td>
+
+            <form method="post" th:action="@{/user/status/__${user.id}__}">
+                <div class="form-group">
+                    <select class="custom-select" name="status" onchange="this.form.submit()">
+                        <option value="Принят" th:selected="${user.status == 'Принят'}" class="text-primary">Принят</option>
+                        <option value="В работе" th:selected="${user.status == 'В работе'}" class="text-warning">В работе</option>
+                        <option value="Завершено" th:selected="${user.status == 'Завершено'}" class="text-success">Завершено</option>
+                    </select>
+                </div>
+            </form>
         </td>
     </tr>
     </tbody>
