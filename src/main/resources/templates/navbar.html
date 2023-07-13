@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" th:fragment="navbar">
+<html lang="en" th:fragment="navbar" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Автосервис</title>
@@ -42,13 +42,13 @@
         <li class="nav-item">
             <a class="nav-link custom-btn" href="/user/info">Профиль</a>
         </li>
-        <li class="nav-item">
+        <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
             <a class="nav-link custom-btn" href="/user/all">Все пользователи</a>
         </li>
         <li class="nav-item">
             <a class="nav-link custom-btn" href="/jobs/allJobs">Услуги</a>
         </li>
-        <li class="nav-item">
+        <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
             <a class="nav-link custom-btn" href="/jobs/create">Создать сервис</a>
         </li>
         <li class="nav-item">

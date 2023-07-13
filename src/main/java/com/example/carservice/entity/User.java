@@ -69,6 +69,9 @@ public class User implements UserDetails {
         this.job = job;
         job.setUser(this);
     }
+    public boolean hasRole(Role role) {
+        return roles.contains(role);
+    }
 
 
 }

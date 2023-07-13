@@ -8,6 +8,7 @@ import com.example.carservice.repository.UserRepository;
 import com.example.carservice.service.JobsService;
 import com.example.carservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +58,7 @@ public String getJobById(@PathVariable("id") Long id, Model model) {
         jobsService.createJob(jobs);
         return "redirect:/";
     }
+
     @PostMapping("/{id}/signup")
     public String signUpForJob(@PathVariable("id") Long jobId, Authentication authentication) {
         String username = authentication.getName();

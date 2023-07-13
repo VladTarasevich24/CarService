@@ -4,6 +4,8 @@ import com.example.carservice.entity.Role;
 import com.example.carservice.entity.User;
 import com.example.carservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,8 +26,12 @@ public class UserService implements UserDetailsService {
     private BCryptPasswordEncoder passwordEncoder;
 
     public void create(User user) {
-        user.setRoles(Set.of(Role.USER));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (user.getUsername().equals("admin")) {
+            user.setRoles(Set.of(Role.ADMIN));
+        } else {
+            user.setRoles(Set.of(Role.USER));
+        }
         userRepository.save(user);
     }
     public Optional<User> getUserByUsername(String username) {
@@ -37,6 +43,7 @@ public class UserService implements UserDetailsService {
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

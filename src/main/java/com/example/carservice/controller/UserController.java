@@ -5,12 +5,17 @@ import com.example.carservice.AuthenticationFacade;
 import com.example.carservice.dto.UserRegistrationDto;
 import com.example.carservice.entity.Car;
 import com.example.carservice.entity.Jobs;
+import com.example.carservice.entity.Role;
 import com.example.carservice.entity.User;
 import com.example.carservice.repository.UserRepository;
 import com.example.carservice.service.JobsService;
 import com.example.carservice.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +50,6 @@ public class UserController {
     }
 
 
-
     @PostMapping("/reg")
     public String reg(UserRegistrationDto dto, Model model) {
         User user = modelMapper.map(dto, User.class);
@@ -54,6 +58,7 @@ public class UserController {
         userService.create(user);
         return "redirect:/";
     }
+
     @GetMapping("/info")
     public String getUserInfo(Model model) {
         String username = authenticationFacade.getUsername();
@@ -68,12 +73,14 @@ public class UserController {
         return "redirect:/";
     }
 
-@GetMapping("/all")
-public String getAllUsers(Model model) {
-    List<User> users = userService.getAllUsers();
-    model.addAttribute("users", users);
-    return "user-list";
-}
+
+    @GetMapping("/all")
+    public String getAllUsers(Model model) {
+        List<User> users = userService.getAllUsers();
+        model.addAttribute("users", users);
+        return "user-list";
+    }
+
     @PostMapping("/status/{id}")
     public String updateStatus(@PathVariable("id") Long id, @RequestParam("status") String status) {
         userRepository.updateUserStatus(id, status);
