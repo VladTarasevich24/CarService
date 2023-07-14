@@ -28,6 +28,6 @@ public class JobsService {
     }
 
     public List<Jobs> getAllJobsByUser(User user) {
-        return jobsRepository.findAllByUser(user);
+        return jobsRepository.findAllByUsers(user);
     }
 }

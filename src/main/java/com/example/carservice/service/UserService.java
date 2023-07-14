@@ -1,7 +1,9 @@
 package com.example.carservice.service;
 
+import com.example.carservice.entity.Jobs;
 import com.example.carservice.entity.Role;
 import com.example.carservice.entity.User;
+import com.example.carservice.repository.JobsRepository;
 import com.example.carservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -12,15 +14,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private JobsRepository jobsRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -33,6 +35,7 @@ public class UserService implements UserDetailsService {
             user.setRoles(Set.of(Role.USER));
         }
         userRepository.save(user);
+
     }
     public Optional<User> getUserByUsername(String username) {
         return userRepository.findByUsername(username);

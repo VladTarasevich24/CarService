@@ -47,10 +47,10 @@
         <td th:text="${user.car.model}"></td>
         <td th:text="${user.car.engineType}"></td>
         <td>
-            <ul th:if="${user.job}">
-                <li th:each="job : ${user.job}" th:text="${job.name}"></li>
+            <ul th:if="${user.jobs}">
+                <li th:each="job : ${user.jobs}" th:text="${jobs.name}"></li>
             </ul>
-            <p th:unless="${user.job}">No jobs</p>
+            <p th:unless="${user.jobs}">No jobs</p>
         </td>
         <td>
 

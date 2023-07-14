@@ -5,13 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -31,9 +30,13 @@ public class User implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     private Car car;
 
-    @OneToOne(mappedBy = "user")
-    private Jobs job;
-
+    @ManyToMany
+    @JoinTable(
+            name = "user_jobs",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "job_id")
+    )
+    private Set<Jobs> jobs = new HashSet<>();
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
@@ -65,13 +68,7 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    public void setJob(Jobs job) {
-        this.job = job;
-        job.setUser(this);
-    }
-    public boolean hasRole(Role role) {
-        return roles.contains(role);
-    }
+
 
 
 }

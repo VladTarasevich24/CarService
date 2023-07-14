@@ -6,7 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -20,6 +23,6 @@ public class Jobs {
     private String name;
     private String description;
     private double cost;
-    @OneToOne
-    private User user;
+    @ManyToMany(mappedBy = "jobs")
+    private Set<User> users = new HashSet<>();
 }
