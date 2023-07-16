@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -56,20 +57,18 @@ public String getJobById(@PathVariable("id") Long id, Model model) {
     }
 
     @PostMapping("/{id}/signup")
+    @Transactional
     public String signUpForJob(@PathVariable("id") Long jobId, Authentication authentication) {
         String username = authentication.getName();
         Optional<User> userOptional = userService.getUserByUsername(username);
         Optional<Jobs> jobsOptional = jobsService.getJobById(jobId);
-
         if (userOptional.isPresent() && jobsOptional.isPresent()) {
             User user = userOptional.get();
             Jobs jobs = jobsOptional.get();
             user.getJobs().add(jobs);
             userService.create(user);
-
             return "redirect:/";
         }
-
         return "redirect:/";
     }
 
