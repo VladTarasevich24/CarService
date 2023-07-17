@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Job</title>
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+<div class="container">
+  <h1>Edit Job</h1>
+  <form th:action="@{/jobs/{id}/edit(id=${job.id})}" method="post" th:object="${jobs}">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" name="name" th:value="${job.name}" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="3" required th:text="${job.description}"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="cost">Cost</label>
+      <input type="number" class="form-control" id="cost" name="cost" th:value="${job.cost}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

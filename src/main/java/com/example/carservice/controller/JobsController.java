@@ -77,6 +77,29 @@ public String getJobById(@PathVariable("id") Long id, Model model) {
         jobsService.deleteJob(jobId);
         return "redirect:/jobs/allJobs";
     }
+    @GetMapping("/{id}/edit")
+    public String showEditJobForm(@PathVariable("id") Long jobId, Model model) {
+        Optional<Jobs> jobsOptional = jobsService.getJobById(jobId);
+        if (jobsOptional.isPresent()) {
+            Jobs job = jobsOptional.get();
+            model.addAttribute("job", job);
+            return "editJob";
+        }
+        return "redirect:/jobs/allJobs";
+    }
+
+    @PostMapping("/{id}/edit")
+    public String updateJob(@PathVariable("id") Long jobId, @ModelAttribute("job") Jobs updatedJob) {
+        Optional<Jobs> jobsOptional = jobsService.getJobById(jobId);
+        if (jobsOptional.isPresent()) {
+            Jobs job = jobsOptional.get();
+            job.setName(updatedJob.getName());
+            job.setDescription(updatedJob.getDescription());
+            job.setCost(updatedJob.getCost());
+            jobsService.createJob(job);
+        }
+        return "redirect:/jobs/allJobs";
+    }
 
 }
 

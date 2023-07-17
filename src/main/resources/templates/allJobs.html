@@ -32,6 +32,9 @@
             <button type="submit" class="btn btn-danger">Удалить</button>
           </form>
         </div>
+        <div sec:authorize="hasAuthority('ADMIN')">
+          <a th:href="@{/jobs/{id}/edit(id=${jobs.id})}" class="btn btn-primary">Редактировать</a>
+        </div>
         <div sec:authorize="hasAuthority('USER')">
         <form th:action="@{/jobs/{id}/signup(id=${jobs.id})}" method="post">
           <button type="submit" class="btn btn-primary">Записаться</button>
