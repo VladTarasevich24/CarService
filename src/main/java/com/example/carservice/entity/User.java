@@ -10,7 +10,9 @@ import java.util.*;
 @Entity
 @Table(name = "users")
 @Builder
-@Data
+@Getter
+@Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode

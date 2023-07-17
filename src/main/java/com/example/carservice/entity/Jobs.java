@@ -6,7 +6,9 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+@Setter
+@Getter
+@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,7 +21,7 @@ public class Jobs {
     private String description;
     private double cost;
 
-    @ManyToMany(mappedBy = "jobs")
-    private Set<User> users;
+//    @ManyToMany(mappedBy = "jobs")
+//    private Set<User> users;
 
 }
