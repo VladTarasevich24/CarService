@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Jobs List</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 <body>
 <div th:replace="navbar :: navbar"></div>
@@ -19,15 +19,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="job : ${jobsList}">
-      <td th:text="${job.id}"></td>
-      <td th:text="${job.name}"></td>
-      <td th:text="${job.description}"></td>
+    <tr th:each="jobs : ${jobsList}">
+      <td th:text="${jobs.id}"></td>
+      <td th:text="${jobs.name}"></td>
+      <td th:text="${jobs.description}"></td>
       <td>
-        от <span th:text="${job.cost}"></span> р.
+        от <span th:text="${jobs.cost}"></span> р.
       </td>
       <td>
-        <form th:action="@{/jobs/{id}/signup(id=${job.id})}" method="post">
+        <form th:action="@{/jobs/{id}/signup(id=${jobs.id})}" method="post">
           <button type="submit" class="btn btn-primary">Записаться</button>
         </form>
       </td>

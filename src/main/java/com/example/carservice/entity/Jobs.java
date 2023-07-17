@@ -3,7 +3,7 @@ package com.example.carservice.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Set;
 
 @Entity
 @Data
@@ -18,7 +18,8 @@ public class Jobs {
     private String name;
     private String description;
     private double cost;
-    @ManyToMany(mappedBy = "jobs", cascade = CascadeType.ALL)
-    private Set<User> users = new HashSet<>();
+
+    @ManyToMany(mappedBy = "jobs")
+    private Set<User> users;
 
 }

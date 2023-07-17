@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Info</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div th:replace="navbar :: navbar"></div>
@@ -22,11 +21,11 @@
                     <p class="card-text"><strong>Car Model:</strong> <span th:text="${user.car.model}"></span></p>
                     <p class="card-text"><strong>Car Engine Type:</strong> <span th:text="${user.car.engineType}"></span></p>
                 </div>
-                <div th:each="job : ${userJobs}">
-                    <p>Job ID: <span th:text="${job.id}"></span></p>
-                    <p>Job Name: <span th:text="${job.name}"></span></p>
-                    <p>Job Description: <span th:text="${job.description}"></span></p>
-                    <p>Job Cost: <span th:text="${job.cost}"></span></p>
+                <div th:each="jobs : ${userJobs}">
+                    <p>Job ID: <span th:text="${jobs.id}"></span></p>
+                    <p>Job Name: <span th:text="${jobs.name}"></span></p>
+                    <p>Job Description: <span th:text="${jobs.description}"></span></p>
+                    <p>Job Cost: <span th:text="${jobs.cost}"></span></p>
                 </div>
             </div>
         </div>

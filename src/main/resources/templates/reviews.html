@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reviews</title>
+</head>
+<body>
+<div th:replace="navbar :: navbar"></div>
+<div class="container">
+  <h1>Reviews</h1>
+
+
+  <form th:action="@{/reviews/create}" method="post">
+    <div class="form-group">
+      <textarea class="form-control" name="text" placeholder="Enter your review" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+  <div class="mt-4">
+    <h3>Reviews</h3>
+    <ul class="list-group">
+      <li th:each="review : ${reviews}" class="list-group-item">
+        <div>
+          <strong th:text="${review.author.username}"></strong>
+          <p th:text="${review.text}"></p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

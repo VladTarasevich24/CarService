@@ -6,7 +6,6 @@ import com.example.carservice.repository.UserRepository;
 import com.example.carservice.service.JobsService;
 import com.example.carservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/jobs")
@@ -37,8 +37,8 @@ public class JobsController {
 public String getJobById(@PathVariable("id") Long id, Model model) {
     Optional<Jobs> jobsOptional = jobsService.getJobById(id);
     if (jobsOptional.isPresent()) {
-        Jobs job = jobsOptional.get();
-        model.addAttribute("job", job);
+        Jobs jobs = jobsOptional.get();
+        model.addAttribute("job", jobs);
         return "jobInfo";
     }
     return "redirect:/";
@@ -66,7 +66,8 @@ public String getJobById(@PathVariable("id") Long id, Model model) {
             User user = userOptional.get();
             Jobs jobs = jobsOptional.get();
             user.getJobs().add(jobs);
-            userService.create(user);
+            System.out.println(user);
+            userService.update(user);
             return "redirect:/";
         }
         return "redirect:/";

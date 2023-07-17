@@ -2,12 +2,10 @@ package com.example.carservice.entity;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -28,13 +26,14 @@ public class User implements UserDetails {
     @OneToOne(cascade = CascadeType.ALL)
     private Car car;
 
+
     @ManyToMany
-    @JoinTable(
-            name = "user_jobs",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "job_id")
-    )
-    private Set<Jobs> jobs = new HashSet<>();
+//    @JoinTable(
+//            name = "user_jobs",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "job_id")
+//    )
+    private Set<Jobs> jobs;
 
     @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)

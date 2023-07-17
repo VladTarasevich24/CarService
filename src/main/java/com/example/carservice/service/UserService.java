@@ -1,13 +1,10 @@
 package com.example.carservice.service;
 
-import com.example.carservice.entity.Jobs;
-import com.example.carservice.entity.Role;
 import com.example.carservice.entity.User;
+import com.example.carservice.entity.Role;
 import com.example.carservice.repository.JobsRepository;
 import com.example.carservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,7 +32,9 @@ public class UserService implements UserDetailsService {
             user.setRoles(Set.of(Role.USER));
         }
         userRepository.save(user);
-
+    }
+    public void update(User user) {
+        userRepository.save(user);
     }
     public Optional<User> getUserByUsername(String username) {
         return userRepository.findByUsername(username);
@@ -46,6 +45,7 @@ public class UserService implements UserDetailsService {
     public Optional<User> getUserById(Long id) {
         return userRepository.findById(id);
     }
+
 
 
     @Override

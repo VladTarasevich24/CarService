@@ -5,13 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<div th:if="${job}">
-    <p>ID: <span th:text="${job.id}"></span></p>
-    <p>Name: <span th:text="${job.name}"></span></p>
-    <p>Description: <span th:text="${job.description}"></span></p>
-    <p>Cost: <span th:text="${job.cost}"></span></p>
+<div th:if="${jobs}">
+    <p>ID: <span th:text="${jobs.id}"></span></p>
+    <p>Name: <span th:text="${jobs.name}"></span></p>
+    <p>Description: <span th:text="${jobs.description}"></span></p>
+    <p>Cost: <span th:text="${jobs.cost}"></span></p>
 </div>
-<div th:unless="${job}">
+<div th:unless="${jobs}">
     <p>Job not found.</p>
 </div>
 </body>
