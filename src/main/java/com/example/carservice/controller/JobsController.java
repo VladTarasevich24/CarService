@@ -72,6 +72,11 @@ public String getJobById(@PathVariable("id") Long id, Model model) {
         }
         return "redirect:/";
     }
+    @PostMapping("/{id}/delete")
+    public String deleteJob(@PathVariable("id") Long jobId) {
+        jobsService.deleteJob(jobId);
+        return "redirect:/jobs/allJobs";
+    }
 
 }
 

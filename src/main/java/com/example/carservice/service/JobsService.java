@@ -26,6 +26,9 @@ public class JobsService {
     public Jobs createJob(Jobs jobs) {
         return jobsRepository.save(jobs);
     }
+    public void deleteJob(Long jobId) {
+        jobsRepository.deleteById(jobId);
+    }
 
     public List<Jobs> getAllJobsByUser(User user) {
         return jobsRepository.findAllByUsers(user);

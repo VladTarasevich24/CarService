@@ -33,8 +33,9 @@
 
         <ul class="nav navbar-nav navbar-right">
 
-            <li><a href="/user/reg"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/user/reg"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li sec:authorize="!isAuthenticated()"><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li sec:authorize="isAuthenticated()"><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
         </ul>
     </div>
 </nav>

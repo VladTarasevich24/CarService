@@ -2,12 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Автосервис</title>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+    <title>Home</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 100px;
+        }
 
+        h1 {
+            font-size: 36px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        img {
+            width: 300px;
+            height: auto;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
 <div th:replace="navbar :: navbar"></div>
+<div class="container">
+    <h1>Добро пожаловать в наш Автосервис</h1>
+    <p>Адрес: Г.Минск, ул.Тимирязева 67</p>
+    <p>Позвонить:</p>
+    <ul>
+        <li>МТС: +375 29 343-77-55</li>
+        <li>A1: +375 44 243-77-55</li>
+    </ul>
+    <img src="https://pw.artfile.me/wallpaper/18-05-2018/650x434/risovannoe-avto-moto-nomer-fon-avtomobil-1342624.jpg" alt="Car Image">
+</div>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
 

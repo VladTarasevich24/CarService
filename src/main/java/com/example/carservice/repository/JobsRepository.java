@@ -11,4 +11,5 @@ public interface JobsRepository extends JpaRepository<Jobs, Long> {
     Optional<Jobs> findById(Long id);
     List<Jobs> findAll();
     List<Jobs> findAllByUsers(User user);
+    void deleteById(Long jobId);
 }

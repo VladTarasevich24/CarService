@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Jobs List</title>
@@ -27,9 +27,16 @@
         от <span th:text="${jobs.cost}"></span> р.
       </td>
       <td>
+        <div sec:authorize="hasAuthority('ADMIN')">
+          <form th:action="@{/jobs/{id}/delete(id=${jobs.id})}" method="post">
+            <button type="submit" class="btn btn-danger">Удалить</button>
+          </form>
+        </div>
+        <div sec:authorize="hasAuthority('USER')">
         <form th:action="@{/jobs/{id}/signup(id=${jobs.id})}" method="post">
           <button type="submit" class="btn btn-primary">Записаться</button>
         </form>
+        </div>
       </td>
     </tr>
     </tbody>
