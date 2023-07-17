@@ -30,16 +30,10 @@ public class User implements UserDetails {
 
 
     @ManyToMany
-//    @JoinTable(
-//            name = "user_jobs",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "job_id")
-//    )
-    private Set<Jobs> jobs;
+    private List<Jobs> jobs;
 
-    @Enumerated(EnumType.STRING)
+
     @ElementCollection(fetch = FetchType.EAGER)
-    @OrderColumn
     private Set<Role> roles = new HashSet<>();
 
     @Override

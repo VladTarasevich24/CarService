@@ -2,7 +2,6 @@ package com.example.carservice.service;
 
 import com.example.carservice.entity.User;
 import com.example.carservice.entity.Role;
-import com.example.carservice.repository.JobsRepository;
 import com.example.carservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,9 +17,6 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private JobsRepository jobsRepository;
-
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 

@@ -2,7 +2,6 @@ package com.example.carservice.controller;
 
 import com.example.carservice.entity.Jobs;
 import com.example.carservice.entity.User;
-import com.example.carservice.repository.UserRepository;
 import com.example.carservice.service.JobsService;
 import com.example.carservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 @Controller
 @RequestMapping("/jobs")
@@ -24,8 +22,7 @@ public class JobsController {
     private JobsService jobsService;
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserRepository userRepository;
+
 
     @GetMapping("/allJobs")
     public String getAllJobs(Model model) {

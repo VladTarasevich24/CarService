@@ -3,7 +3,7 @@ package com.example.carservice.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
+
 
 @Entity
 @Setter
@@ -12,7 +12,6 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
 public class Jobs {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +20,5 @@ public class Jobs {
     private String description;
     private double cost;
 
-//    @ManyToMany(mappedBy = "jobs")
-//    private Set<User> users;
 
 }

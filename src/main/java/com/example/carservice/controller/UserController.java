@@ -4,10 +4,8 @@ package com.example.carservice.controller;
 import com.example.carservice.AuthenticationFacade;
 import com.example.carservice.dto.UserRegistrationDto;
 import com.example.carservice.entity.Car;
-import com.example.carservice.entity.Jobs;
 import com.example.carservice.entity.User;
 import com.example.carservice.repository.UserRepository;
-import com.example.carservice.service.JobsService;
 import com.example.carservice.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,6 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
@@ -33,8 +30,6 @@ public class UserController {
     private AuthenticationFacade authenticationFacade;
     @Autowired
     private ModelMapper modelMapper;
-    @Autowired
-    private JobsService jobsService;
     @Autowired
     private UserRepository userRepository;
 
@@ -74,8 +69,6 @@ public class UserController {
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             model.addAttribute("user", user);
-            List<Jobs> userJobs = jobsService.getAllJobsByUser(user);
-            model.addAttribute("userJobs", userJobs);
             return "info";
         }
         return "redirect:/";

@@ -1,7 +1,6 @@
 package com.example.carservice.service;
 
 import com.example.carservice.entity.Jobs;
-import com.example.carservice.entity.User;
 import com.example.carservice.repository.JobsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +31,4 @@ public class JobsService {
         jobsRepository.deleteById(jobId);
     }
 
-    public List<Jobs> getAllJobsByUser(User user) {
-        return jobsRepository.findAllByUsers(user);
-    }
 }
